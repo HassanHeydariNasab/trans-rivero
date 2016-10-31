@@ -1,0 +1,23 @@
+body{
+    margin: 0px;
+}
+#ludo{
+    background-color: red;
+    width: 100vw !important;
+    height: 90vh !important;
+}
+#movu{
+    background-color: green;
+    height: 10vh;
+}
+.movu_btn{
+    display: inline-block;
+    text-align: center;
+    width: 49%;
+    height: 100%;
+    margin: 0px;
+}
+.movu_bildo{
+    height: 90%;
+    width: 100%;
+}

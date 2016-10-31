@@ -1,0 +1,32 @@
+package com.android.testproject;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.util.Log;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.net.Uri;
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+
+public class test_activity extends AppCompatActivity
+{
+    String msg = "Android : ";
+    /** Called when the activity is first created. */
+    @Override
+    public void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+	Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+	setSupportActionBar(myToolbar);
+	WebView myWebView = (WebView) findViewById(R.id.webview);
+	WebSettings webSettings = myWebView.getSettings();
+	webSettings.setJavaScriptEnabled(true);
+	myWebView.setWebViewClient(new WebViewClient());
+	myWebView.loadUrl("file:///android_asset/ludo.html");
+    }
+
+}
