@@ -4,7 +4,7 @@ body{
 #ludo{
     background-color: red;
     width: 100vw !important;
-    height: 90vh !important;
+    height: 80vh !important;
 }
 #movu{
     background-color: green;
@@ -20,4 +20,11 @@ body{
 .movu_bildo{
     height: 90%;
     width: 100%;
+}
+#sano{
+    height: 10vh;
+    background-color: red;
+}
+#sano:hover{
+    width: 50vw;
 }
