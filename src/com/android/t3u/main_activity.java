@@ -30,7 +30,7 @@ public class main_activity extends Activity
 	    }
 	});
 	myWebView.setLongClickable(false);
-	myWebView.loadUrl("file:///android_asset/ludo.html");
+	myWebView.loadUrl("file:///android_asset/ludo.html?nivelo=0");
 	
 	
     }

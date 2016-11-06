@@ -1,5 +1,11 @@
+@font-face {
+    font-family: vzr;
+    src: url('Vazir.woff');
+}
 body{
     margin: 0px;
+    font-family: vzr;
+    overflow-y: hidden;
 }
 #ludo{
     background-color: red;
@@ -7,7 +13,7 @@ body{
     height: 80vh !important;
 }
 #movu{
-    background-color: green;
+    background-color: #388e3c;
     height: 10vh;
 }
 .movu_btn{
@@ -22,9 +28,39 @@ body{
     width: 100%;
 }
 #sano{
-    height: 10vh;
-    background-color: red;
+    height: 5vh;
+    background-color: #ff5252;
 }
-#sano:hover{
-    width: 50vw;
+#spiro{
+    height: 5vh;
+    background-color: #0288d1;
+}
+.spaco{
+    background-color: #00b4c4;
+    height: 10vh;
+    
+}
+#menuo{
+    background-image: url("bildoj/plagxo.png");
+    height: 80vh;
+    text-align: center;
+}
+#stato{
+    background-color: orange;
+    padding: 10px;
+    font-size: 2em;
+    padding: 10px;
+    width: 70vw;
+}
+#denove{
+    background-color: green;
+    font-size: 1.618em;
+    padding: 10px;
+    margin-top: 20vh;
+}
+#sekve{
+    background-color: blue;
+    font-size: 1.618em;
+    padding: 10px;
+    margin-top: 20vh;
 }
