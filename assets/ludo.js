@@ -104,14 +104,10 @@ myState.create = function(){
   this.testudoj = new Kiwi.Group(this)
   this.krokodiloj = new Kiwi.Group(this)
   this.sxtonoj = new Kiwi.Group(this)
-
-  this.t = []
   
   var testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], lr-64, sh/3)
   testudo.addTag(ad.length)
-  testudo.addTag("d")
   this.testudoj.addChild(testudo)
-  this.t.push(testudo)
   amd.push(0)
   ad.push(1)
   for(i = 0; i < nivelo_longa; i++) {
@@ -120,18 +116,14 @@ myState.create = function(){
         this.krokodiloj.addChild(new Kiwi.GameObjects.Sprite(this, this.textures['krokodilo_md'], ll-64, -sh/3*i))
         var testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], lr-64, -sh/3*i)
         testudo.addTag(ad.length)
-        testudo.addTag("d")
         this.testudoj.addChild(testudo)
-        this.t.push(testudo)
         amd.push(3)
         ad.push(1)
       }
       else if(hazarde(sxtonebla)){
         var testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], lr-64, -sh/3*i)
         testudo.addTag(ad.length)
-        testudo.addTag("d")
         this.testudoj.addChild(testudo)
-        this.t.push(testudo)
         var sxtono = new Kiwi.GameObjects.Sprite(this, this.textures['sxtono_md'], ll-64, -sh/3*i)
         this.sxtonoj.addChild(sxtono)
         amd.push(2)
@@ -140,9 +132,7 @@ myState.create = function(){
       else{
         var testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], ll-64, -sh/3*i)
         testudo.addTag(ad.length)
-        testudo.addTag("md")
         this.testudoj.addChild(testudo)
-        this.t.push(testudo)
         amd.push(1)
         ad.push(0)
       }
@@ -152,18 +142,14 @@ myState.create = function(){
         this.krokodiloj.addChild(new Kiwi.GameObjects.Sprite(this, this.textures['krokodilo_d'], lr-64, -sh/3*i))
         var testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], ll-64, -sh/3*i)
         testudo.addTag(ad.length)
-        testudo.addTag("md")
         this.testudoj.addChild(testudo)
-        this.t.push(testudo)
         amd.push(1)
         ad.push(3)
         }
       else if(hazarde(sxtonebla)){
         var testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], ll-64, -sh/3*i)
         testudo.addTag(ad.length)
-        testudo.addTag("d")
         this.testudoj.addChild(testudo)
-        this.t.push(testudo)
         var sxtono = new Kiwi.GameObjects.Sprite(this, this.textures['sxtono_d'], lr-64, -sh/3*i)
         this.sxtonoj.addChild(sxtono)
         amd.push(1)
@@ -172,9 +158,7 @@ myState.create = function(){
       else{
         var testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], lr-64, -sh/3*i)
         testudo.addTag(ad.length)
-        testudo.addTag("d")
         this.testudoj.addChild(testudo)
-        this.t.push(testudo)
         amd.push(0)
         ad.push(1)
       }
@@ -193,7 +177,6 @@ myState.create = function(){
       this.plagxoj.addChild(this.plagxo)
     }
   }
-  console.log(this.t)
   console.log(ad, amd)
   this.addChild(this.testudoj)
   this.addChild(this.krokodiloj)
