@@ -2,7 +2,9 @@ var sw = window.screen.width, sh = window.screen.height * 0.75
 var ll = sw / 4, lr = sw * 3 / 4
 var myState = new Kiwi.State('myState');
 var game = new Kiwi.Game("ludo", 'Trans', myState, { renderer: Kiwi.RENDERER_CANVAS , width:sw , height:sh});
-var kk, pasxo, d, spiro=100, sano=100, nivelo_longa, tempdeturo, krokodilebla, sxtonebla
+var kk, pasxo, d, tempo, spiro=100, sano=100, nivelo_longa, tempdeturo, krokodilebla, sxtonebla
+var ad = []
+var amd = []
 function elekti(choices) {
   var index = Math.floor(Math.random() * choices.length);
   return choices[index];
@@ -102,80 +104,79 @@ myState.create = function(){
   this.testudoj = new Kiwi.Group(this)
   this.krokodiloj = new Kiwi.Group(this)
   this.sxtonoj = new Kiwi.Group(this)
-  this.amd = []
-  this.ad = []
-  this.t = []
 
-  this.testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], lr-64, sh/3)
-  this.testudo.addTag(this.ad.length)
-  this.testudo.addTag("d")
-  this.testudoj.addChild(this.testudo)
-  this.t.push(this.testudo)
-  this.amd.push(0)
-  this.ad.push(1)
+  this.t = []
+  
+  var testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], lr-64, sh/3)
+  testudo.addTag(ad.length)
+  testudo.addTag("d")
+  this.testudoj.addChild(testudo)
+  this.t.push(testudo)
+  amd.push(0)
+  ad.push(1)
   for(i = 0; i < nivelo_longa; i++) {
     if(hazarde(2)){
       if(hazarde(krokodilebla)){
         this.krokodiloj.addChild(new Kiwi.GameObjects.Sprite(this, this.textures['krokodilo_md'], ll-64, -sh/3*i))
-        this.testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], lr-64, -sh/3*i)
-        this.testudo.addTag(this.ad.length)
-        this.testudo.addTag("d")
-        this.testudoj.addChild(this.testudo)
-        this.t.push(this.testudo)
-        this.amd.push(3)
-        this.ad.push(1)
+        var testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], lr-64, -sh/3*i)
+        testudo.addTag(ad.length)
+        testudo.addTag("d")
+        this.testudoj.addChild(testudo)
+        this.t.push(testudo)
+        amd.push(3)
+        ad.push(1)
       }
       else if(hazarde(sxtonebla)){
-        this.testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], lr-64, -sh/3*i)
-        this.testudo.addTag(this.ad.length)
-        this.testudo.addTag("d")
-        this.testudoj.addChild(this.testudo)
-        this.t.push(this.testudo)
-        this.sxtono = new Kiwi.GameObjects.Sprite(this, this.textures['sxtono_md'], ll-64, -sh/3*i)
-        this.sxtonoj.addChild(this.sxtono)
-        this.amd.push(2)
-        this.ad.push(1)
+        var testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], lr-64, -sh/3*i)
+        testudo.addTag(ad.length)
+        testudo.addTag("d")
+        this.testudoj.addChild(testudo)
+        this.t.push(testudo)
+        var sxtono = new Kiwi.GameObjects.Sprite(this, this.textures['sxtono_md'], ll-64, -sh/3*i)
+        this.sxtonoj.addChild(sxtono)
+        amd.push(2)
+        ad.push(1)
       }
       else{
-        this.testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], ll-64, -sh/3*i)
-        this.testudo.addTag(this.ad.length)
-        this.testudo.addTag("md")
-        this.testudoj.addChild(this.testudo)
-        this.t.push(this.testudo)
-        this.amd.push(1)
-        this.ad.push(0)
+        var testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], ll-64, -sh/3*i)
+        testudo.addTag(ad.length)
+        testudo.addTag("md")
+        this.testudoj.addChild(testudo)
+        this.t.push(testudo)
+        amd.push(1)
+        ad.push(0)
       }
     }
     else{
       if(hazarde(krokodilebla)){
         this.krokodiloj.addChild(new Kiwi.GameObjects.Sprite(this, this.textures['krokodilo_d'], lr-64, -sh/3*i))
-        this.testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], ll-64, -sh/3*i)
-        this.testudo.addTag(this.ad.length)
-        this.testudo.addTag("md")
-        this.testudoj.addChild(this.testudo)
-        this.t.push(this.testudo)
-        this.amd.push(1)
-        this.ad.push(3)
+        var testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], ll-64, -sh/3*i)
+        testudo.addTag(ad.length)
+        testudo.addTag("md")
+        this.testudoj.addChild(testudo)
+        this.t.push(testudo)
+        amd.push(1)
+        ad.push(3)
         }
       else if(hazarde(sxtonebla)){
-        this.testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], ll-64, -sh/3*i)
-        this.testudo.addTag(this.ad.length)
-        this.testudo.addTag("d")
-        this.testudoj.addChild(this.testudo)
-        this.t.push(this.testudo)
-        this.sxtono = new Kiwi.GameObjects.Sprite(this, this.textures['sxtono_d'], lr-64, -sh/3*i)
-        this.sxtonoj.addChild(this.sxtono)
-        this.amd.push(1)
-        this.ad.push(2)
+        var testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], ll-64, -sh/3*i)
+        testudo.addTag(ad.length)
+        testudo.addTag("d")
+        this.testudoj.addChild(testudo)
+        this.t.push(testudo)
+        var sxtono = new Kiwi.GameObjects.Sprite(this, this.textures['sxtono_d'], lr-64, -sh/3*i)
+        this.sxtonoj.addChild(sxtono)
+        amd.push(1)
+        ad.push(2)
       }
       else{
-        this.testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], lr-64, -sh/3*i)
-        this.testudo.addTag(this.ad.length)
-        this.testudo.addTag("d")
-        this.testudoj.addChild(this.testudo)
-        this.t.push(this.testudo)
-        this.amd.push(0)
-        this.ad.push(1)
+        var testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], lr-64, -sh/3*i)
+        testudo.addTag(ad.length)
+        testudo.addTag("d")
+        this.testudoj.addChild(testudo)
+        this.t.push(testudo)
+        amd.push(0)
+        ad.push(1)
       }
     }
   }
@@ -193,15 +194,15 @@ myState.create = function(){
     }
   }
   console.log(this.t)
-  console.log(this.ad, this.amd)
+  console.log(ad, amd)
   this.addChild(this.testudoj)
   this.addChild(this.krokodiloj)
   this.addChild(this.sxtonoj)
   this.addChild(this.plagxoj);
   this.addChild(this.k);
   
-  this.tempo = 0
-  this.tempilo = this.game.time.clock.createTimer('tempilo', 0.1, nivelo_longa*tempdeturo*100000, true);
+  tempo = 0
+  this.tempilo = this.game.time.clock.createTimer('tempilo', 0.1, nivelo_longa*tempdeturo*100, true);
   this.tempilo.createTimerEvent( Kiwi.Time.TimerEvent.TIMER_COUNT, this.jeTempiloKalkulo1s, this );
   this.tempilo.createTimerEvent( Kiwi.Time.TimerEvent.TIMER_STOP, this.jeTempiloHalto, this );
   
@@ -218,8 +219,9 @@ myState.update = function(){
   if(pasxo >= nivelo_longa){this.menuo("gajnanto")}
   else if(sano <= 0){this.menuo("mortita")}
   else if(spiro <= 0){this.menuo("subakvita")}
-  if(!(((this.ad[pasxo] === 1 || this.ad[pasxo] === 2) && d) || ((this.amd[pasxo] === 1 || this.amd[pasxo] === 2) && d == false)) && this.tempo > this.lastaTempo && pasxo != 0 && pasxo != nivelo_longa){
-    if((this.ad[pasxo] === 3 && d) || (this.amd[pasxo] === 3 && d == false)){
+  else{
+  if(!(((ad[pasxo] === 1 || ad[pasxo] === 2) && d) || ((amd[pasxo] === 1 || amd[pasxo] === 2) && d == false)) && tempo > this.lastaTempo && pasxo != 0 && pasxo != nivelo_longa){
+    if((ad[pasxo] === 3 && d) || (amd[pasxo] === 3 && d == false)){
       spiro-=5
     }
     else{
@@ -227,31 +229,29 @@ myState.update = function(){
     }
     document.getElementById("spiro").style.width = spiro + "vw"
   }
-  if(((this.ad[pasxo] === 3 && d) || (this.amd[pasxo] === 3 && d == false)) && this.tempo > this.lastaTempo && pasxo != 0 && pasxo != nivelo_longa){
+  if(((ad[pasxo] === 3 && d) || (amd[pasxo] === 3 && d == false)) && tempo > this.lastaTempo && pasxo != 0 && pasxo != nivelo_longa){
     sano-=15
     document.getElementById("sano").style.width = sano + "vw"
   }
-  this.lastaTempo = this.tempo
-};
-myState.dekstren = function(){
-  this.k.x = lr
+  this.lastaTempo = tempo
 }
+};
 myState.jeTempiloKalkulo1s = function(){
-  if(this.tempo < (nivelo_longa+1)*tempdeturo*100000){
-    this.tempo+=1
+  if(tempo < (nivelo_longa+1)*tempdeturo*100){
+    tempo+=1
     this.tt = this.testudoj.getFirstChildByTag(pasxo)
-    if (this.tt !== null){
+    if (this.tt !== null && tempo % 3 === 0){
       if(this.tt.alpha <= 0){
-        if(this.amd[pasxo] === 1){
-          this.amd[pasxo] = 0
+        if(amd[pasxo] === 1){
+          amd[pasxo] = 0
           this.testudoj.removeChild(this.tt)
         }
-        if(this.ad[pasxo] === 1){
-          this.ad[pasxo] = 0
+        if(ad[pasxo] === 1){
+          ad[pasxo] = 0
           this.testudoj.removeChild(this.tt)
         }
       }
-      else if ((this.tempo % tempdeturo == 0) && ((this.ad[pasxo] === 1 && d) || (this.amd[pasxo] === 1 && d==false))){
+      else if ((tempo % tempdeturo == 0) && ((ad[pasxo] === 1 && d) || (amd[pasxo] === 1 && d==false))){
         this.tt.alpha -= 1/3
       }
     }
@@ -261,7 +261,12 @@ myState.jeTempiloKalkulo1s = function(){
   }
 }
 myState.menuo = function(stato){
-  alert(stato)
-  //window.location = "file:///android_asset/menuo.html?stato="+stato+"&nivelo="+nivelo
-  window.location = "menuo.html?stato="+stato+"&nivelo="+nivelo
+  try{
+    //window.location = "file:///android_asset/menuo.html?stato="+stato+"&nivelo="+nivelo
+  }
+  finally{
+    alert(stato)
+    window.location = "menuo.html?stato="+stato+"&nivelo="+nivelo
+  }
 }
+//game.cameras.defaultCamera.transform.scale
