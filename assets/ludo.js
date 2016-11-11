@@ -1,4 +1,4 @@
-var sw = window.screen.width, sh = window.screen.height * 0.75
+var sw = window.screen.width, sh = window.screen.height * 0.8
 var ll = sw / 4, lr = sw * 3 / 4
 var myState = new Kiwi.State('myState');
 var game = new Kiwi.Game("ludo", 'Trans', myState, { renderer: Kiwi.RENDERER_CANVAS , width:sw , height:sh});
@@ -85,9 +85,15 @@ myState.preload = function(){
   this.addImage('sxtono_d', 'bildoj/sxtono_d.svg');
   this.addImage('sxtono_md', 'bildoj/sxtono_md.svg');
   this.addImage('plagxo', 'bildoj/plagxo.svg');
-  this.addImage('krokodilo_d', 'bildoj/krokodilo_d.svg');
-  this.addImage('krokodilo_md', 'bildoj/krokodilo_md.svg');
+  this.addSpriteSheet('krokodilo_d', 'bildoj/krokodilo_d.svg', 128,128);
+  this.addSpriteSheet('krokodilo_md', 'bildoj/krokodilo_md.svg', 128, 128);
   this.addImage('testudo', 'bildoj/testudo.svg');
+  this.addImage('negxulo', 'bildoj/negxulo.svg');
+  this.addImage('negxo', 'bildoj/negxo.svg');
+  this.addImage('pingveno', 'bildoj/pingveno.svg');
+  this.addImage('degelata_negxulo', 'bildoj/degelata_negxulo.svg');
+  this.addImage('k2_antaux', 'bildoj/k2_antaux.svg');
+  this.addImage('k5_antaux', 'bildoj/k5_antaux.svg');
 };
 
 myState.create = function(){
@@ -102,7 +108,8 @@ myState.create = function(){
   kk = this.k
 
   this.testudoj = new Kiwi.Group(this)
-  this.krokodiloj = new Kiwi.Group(this)
+  this.krokodiloj_d = new Kiwi.Group(this)
+  this.krokodiloj_md = new Kiwi.Group(this)
   this.sxtonoj = new Kiwi.Group(this)
   
   var testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], lr-64, sh/3)
@@ -113,7 +120,7 @@ myState.create = function(){
   for(i = 0; i < nivelo_longa; i++) {
     if(hazarde(2)){
       if(hazarde(krokodilebla)){
-        this.krokodiloj.addChild(new Kiwi.GameObjects.Sprite(this, this.textures['krokodilo_md'], ll-64, -sh/3*i))
+        this.krokodiloj_md.addChild(new Kiwi.GameObjects.Sprite(this, this.textures['krokodilo_md'], ll-64, -sh/3*i))
         var testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], lr-64, -sh/3*i)
         testudo.addTag(ad.length)
         this.testudoj.addChild(testudo)
@@ -139,7 +146,7 @@ myState.create = function(){
     }
     else{
       if(hazarde(krokodilebla)){
-        this.krokodiloj.addChild(new Kiwi.GameObjects.Sprite(this, this.textures['krokodilo_d'], lr-64, -sh/3*i))
+        this.krokodiloj_d.addChild(new Kiwi.GameObjects.Sprite(this, this.textures['krokodilo_d'], lr-64, -sh/3*i))
         var testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], ll-64, -sh/3*i)
         testudo.addTag(ad.length)
         this.testudoj.addChild(testudo)
@@ -171,19 +178,35 @@ myState.create = function(){
       this.plagxoj.addChild(this.plagxo)
     }
   }
+  this.degelata_negxulo = new Kiwi.GameObjects.StaticImage(this, this.textures['degelata_negxulo'], -32, sh/3-32)
   for(i = 0; i < sw / 256 + 1; i++){
     for(j = 0; j < 2; j++){
-      this.plagxo = new Kiwi.GameObjects.StaticImage(this, this.textures['plagxo'], i*256, -sh/3*nivelo_longa - j*255+sh/12)
+      this.plagxo = new Kiwi.GameObjects.StaticImage(this, this.textures['negxo'], i*256, -sh/3*nivelo_longa - j*255+sh/3-80)
       this.plagxoj.addChild(this.plagxo)
     }
   }
-  console.log(ad, amd)
-  this.addChild(this.testudoj)
-  this.addChild(this.krokodiloj)
-  this.addChild(this.sxtonoj)
-  this.addChild(this.plagxoj);
-  this.addChild(this.k);
+  if(hazarde(2)){
+    this.negxulo = new Kiwi.GameObjects.StaticImage(this, this.textures['negxulo'], sw/2-64, -sh/3*(nivelo_longa-1))
+  }
+  else{
+    this.negxulo = new Kiwi.GameObjects.StaticImage(this, this.textures['pingveno'], sw/2-64, -sh/3*(nivelo_longa-1))
+  }
+  this.k2_antaux = new Kiwi.GameObjects.StaticImage(this, this.textures['k2_antaux'], lr, -sh/3*(nivelo_longa-1))
+  this.k5_antaux = new Kiwi.GameObjects.StaticImage(this, this.textures['k5_antaux'], ll-64, -sh/3*(nivelo_longa-1))
   
+  console.log(ad, amd)
+  this.addChild(this.testudoj);
+  this.addChild(this.krokodiloj_d);
+  this.addChild(this.krokodiloj_md);
+  this.addChild(this.sxtonoj);
+  this.addChild(this.plagxoj);
+  this.addChild(this.negxulo);
+  this.addChild(this.degelata_negxulo);
+  this.addChild(this.k2_antaux);
+  this.addChild(this.k5_antaux);
+  this.addChild(this.k);
+  this.krokodiloj_d.callAll('animation', 'add', ['mangxi', [0,1,2,3], 0.1, true, true])
+  this.krokodiloj_md.callAll('animation', 'add', ['mangxi', [0,1,2,3], 0.1, true, true])
   tempo = 0
   this.tempilo = this.game.time.clock.createTimer('tempilo', 0.1, nivelo_longa*tempdeturo*100, true);
   this.tempilo.createTimerEvent( Kiwi.Time.TimerEvent.TIMER_COUNT, this.jeTempiloKalkulo1s, this );
@@ -245,11 +268,11 @@ myState.jeTempiloKalkulo1s = function(){
 }
 myState.menuo = function(stato){
   try{
-    //window.location = "file:///android_asset/menuo.html?stato="+stato+"&nivelo="+nivelo
+    window.location = "file:///android_asset/menuo.html?stato="+stato+"&nivelo="+nivelo
   }
   finally{
-    alert(stato)
-    window.location = "menuo.html?stato="+stato+"&nivelo="+nivelo
+    //alert(stato)
+    //window.location = "menuo.html?stato="+stato+"&nivelo="+nivelo
   }
 }
 //game.cameras.defaultCamera.transform.scale

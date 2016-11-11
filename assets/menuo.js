@@ -49,17 +49,17 @@ document.getElementById("stato").innerHTML = mesagxo
 
 document.getElementById("denove").addEventListener("click", function(){
   try{
-    //window.location = "file:///android_asset/ludo.html?nivelo="+nivelo
+    window.location = "file:///android_asset/ludo.html?nivelo="+nivelo
   }
   finally{
-    window.location = "ludo.html?nivelo="+nivelo
+    //window.location = "ludo.html?nivelo="+nivelo
   }
 })
 document.getElementById("sekve").addEventListener("click", function(){
   try{
-    //window.location = "file:///android_asset/ludo.html?nivelo="+(1+(+nivelo))
+    window.location = "file:///android_asset/ludo.html?nivelo="+(1+(+nivelo))
   }
   finally{
-    window.location = "ludo.html?nivelo="+(1+(+nivelo))
+    //window.location = "ludo.html?nivelo="+(1+(+nivelo))
   }
 })
