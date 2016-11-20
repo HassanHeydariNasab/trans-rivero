@@ -19,47 +19,44 @@ function persa_cifero(cifero){
 var params = getSearchParameters();
 stato = params.stato
 nivelo = params.nivelo
+jxeleo = params.jxeleo
 var mesagxo
 denove = document.getElementById("denove")
 sekve = document.getElementById("sekve")
 k_antaux = document.getElementById("k_antaux")
-k_antaux_f = document.getElementById("k_antaux_f")
 if(stato == "gajnanto"){
   mesagxo = "به سلامت رد شدی!"
-  sekve.innerHTML = "شروع مرحلهٔ بعد ("+persa_cifero((1+(+nivelo)).toString())+")"
+  window.localStorage.setItem("nivelo_"+jxeleo, +window.localStorage.getItem("nivelo_"+jxeleo)+1)
+  sekve.innerHTML = "مرحلهٔ بعد ("+persa_cifero((1+(+nivelo)).toString())+")"
   denove.style.display = "none"
-  k_antaux_f.style.display = "none"
+  k_antaux.src = "bildoj/"+jxeleo+"_antaux.svg"
 }
 else if(stato == "subakvita"){
   mesagxo = "غرق شدی!"
   sekve.style.display = "none"
-  k_antaux.style.display = "none"
+  k_antaux.src = "bildoj/"+jxeleo+"_antaux_f.svg"
 }
 else if(stato == "mortita"){
   mesagxo = "مُردی!"
   sekve.style.display = "none"
-  k_antaux.style.display = "none"
+  k_antaux.src = "bildoj/"+jxeleo+"_antaux_f.svg"
 }
 else if(stato == "fintempe"){
   mesagxo = "زمان به پایان رسید!"
   sekve.style.display = "none"
-  k_antaux.style.display = "none"
+  k_antaux.src = "bildoj/"+jxeleo+"_antaux_f.svg"
 }
 document.getElementById("stato").innerHTML = mesagxo
 
 document.getElementById("denove").addEventListener("click", function(){
-  try{
-    window.location = "file:///android_asset/ludo.html?nivelo="+nivelo
-  }
-  finally{
-    //window.location = "ludo.html?nivelo="+nivelo
-  }
+  //window.location = "file:///android_asset/ludo.html?jxeleo="+jxeleo+"&nivelo="+nivelo
+  window.location = "ludo.html?jxeleo="+jxeleo+"&nivelo="+nivelo
 })
 document.getElementById("sekve").addEventListener("click", function(){
-  try{
-    window.location = "file:///android_asset/ludo.html?nivelo="+(1+(+nivelo))
-  }
-  finally{
-    //window.location = "ludo.html?nivelo="+(1+(+nivelo))
-  }
+  //window.location = "file:///android_asset/ludo.html?jxeleo="+jxeleo+"&nivelo="+(1+(+nivelo))
+  window.location = "ludo.html?jxeleo="+jxeleo+"&nivelo="+(1+(+nivelo))
+})
+document.getElementById("reen").addEventListener("click", function(){
+  //window.location = "file:///android_asset/niveloj.html"
+  window.location = "niveloj.html"
 })

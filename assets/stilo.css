@@ -47,36 +47,83 @@ body{
 }
 .spaco{
     background-color: #00b4c4;
-    height: 10vh;    
+    height: 12vh;    
 }
 #spaceto{
-    height: 5vh;
+    height: 5%;
 }
 #menuo{
     background-color: #212121;
-    height: 80vh;
+    height: 70vh;
     text-align: center;
+    padding: 4vh 0px;
 }
 #stato{
     background-color: #c6c6c6;
     padding: 10px;
     font-size: 4vh;
-    padding: 10px;
     width: 70vw;
+}
+.menuo_butono{
+    font-size: 5vh;
+    padding: 10px;
+    *margin-top: 20vh;
 }
 #denove{
     background-color: #ffeb3b;
-    font-size: 5vh;
-    padding: 10px;
-    margin-top: 20vh;
+    margin-top: 8vh;
 }
 #sekve{
     background-color: #03a9f4;
-    font-size: 5vh;
-    padding: 10px;
-    margin-top: 20vh;
+    margin-top: 8vh;
+}
+#reen{
+    background-color: #757575;
+    margin-top: 10px;
 }
 .k{
     height: 80%;
     width: 80%;
+}
+.grupo{
+    color: black;
+    height: 20%;
+    margin-top: 15px;
+    position: relative;
+}
+#flava{
+    background-color: #ffeb3b;
+}
+#verda{
+    background-color: #388e3c;
+}
+#viola{
+    background-color: #512da8;
+}
+#blua{
+    background-color: #1976d2;
+}
+.jxeleo{
+    position: absolute;
+    left: 0px;
+    height: 100%;
+}
+.komencu{
+    width: 50vw;
+    height: 100%;
+    position: absolute;
+    color: #fff;
+    font-size: 3vh;
+    vertical-align: middle;
+    line-height: 450%;
+    background-image: url('bildoj/ludu.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+#komencu_flava{
+    background-color: #fbc02d
+}
+#komencu_verda{
+    background-color: #689f38
 }
