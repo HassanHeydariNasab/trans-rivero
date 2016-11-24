@@ -2,7 +2,7 @@ var sw = window.screen.width, sh = window.screen.height * 0.8
 var ll = sw / 4, lr = sw * 3 / 4
 var myState = new Kiwi.State('myState');
 var game = new Kiwi.Game("ludo", 'Trans', myState, { renderer: Kiwi.RENDERER_CANVAS , width:sw , height:sh});
-var kk, pasxo, la_d, la_md, d, tempo, spiro=100, sano=100, nivelo_longa, tempdeturo, krokodilebla, sxtonebla
+var kk, pasxo, la_d, la_md, d, tempo, spiro=100, sano=100, nivelo_longa, tempdeturo, krokodilebla, sxtonebla, nuba, nubo_denco, nokte, sf, fulma, intervalo=100, rugxebla
 var ad = []
 var amd = []
 function elekti(choices) {
@@ -38,6 +38,10 @@ var nivelo = +params.nivelo,
 jxeleo = params.jxeleo
 switch(jxeleo){
   case "flava":
+  nuba = false
+  nokte = false
+  fulma = false
+  rugxebla = 0
   switch(nivelo){
     case 0:
     nivelo_longa = 10;
@@ -83,6 +87,11 @@ switch(jxeleo){
   }
   break;
   case "verda":
+  nuba = true;
+  nubo_denco = 4
+  nokte = true
+  fulma = true
+  rugxebla = 2
   switch(nivelo){
     case 0:
     nivelo_longa = 15;
@@ -138,6 +147,7 @@ myState.preload = function(){
   this.addSpriteSheet('krokodilo_d', 'bildoj/krokodilo_d.svg', 128,128);
   this.addSpriteSheet('krokodilo_md', 'bildoj/krokodilo_md.svg', 128, 128);
   this.addImage('testudo', 'bildoj/testudo.svg');
+  this.addImage('testudo_rugxa', 'bildoj/testudo_rugxa.svg');
   this.addImage('negxulo', 'bildoj/negxulo.svg');
   this.addImage('negxo', 'bildoj/negxo.svg');
   this.addImage('pingveno', 'bildoj/pingveno.svg');
@@ -149,18 +159,44 @@ myState.preload = function(){
   this.addImage('profunda_akvo', 'bildoj/profunda_akvo.svg');
   this.addImage('nubo1', 'bildoj/nubo1.svg');
   this.addImage('nubo2', 'bildoj/nubo2.svg');
+  this.addImage('nubo3', 'bildoj/nubo3.svg');
+  this.addImage('nubo4', 'bildoj/nubo4.svg');
+  this.addImage('nigrajxo', 'bildoj/nigrajxo.svg');
+  this.addImage('fulmo', 'bildoj/fulmo.svg');
+  this.addAudio('tondro1', 'sonoj/tondro1.mp3');
+  this.addAudio('tondro2', 'sonoj/tondro2.mp3');
 };
 
 myState.create = function(){
   Kiwi.State.prototype.create.call(this);
   this.game.stage.resize(sw, sh);
+  sf = sh/3.6
   this.game.stage.color = '#00bcd4'
   
-  this.profunda_akvo = new Kiwi.GameObjects.Sprite(this, this.textures['profunda_akvo'], 0,0)
-  this.profunda_akvo.scaleX = sw
-  this.profunda_akvo.scaleY = sh
+  this.profunda_akvo = new Kiwi.GameObjects.StaticImage(this, this.textures['profunda_akvo'], 0,0)
+  this.profunda_akvo.width = sw
+  this.profunda_akvo.height = sh
+  this.profunda_akvo.scaleX = sw/100
+  this.profunda_akvo.scaleY = sh/100
+  this.profunda_akvo.x = sw/2-64
   //this.profunda_akvo.alpha = 0
-  var sf = sh/3.6
+  if(nokte){
+    this.nigrajxo = new Kiwi.GameObjects.StaticImage(this, this.textures['nigrajxo'], 0,0)
+    this.nigrajxo.width = sw
+    this.nigrajxo.height = sh
+    this.nigrajxo.scaleX = sw/100
+    this.nigrajxo.scaleY = sh/100
+    this.nigrajxo.x = sw/2-64
+  }
+  if(fulma){
+    this.fulmo = new Kiwi.GameObjects.StaticImage(this, this.textures['fulmo'], 0,0)
+    this.fulmo.width = sw
+    this.fulmo.height = sh
+    this.fulmo.scaleX = sw/100
+    this.fulmo.scaleY = sh/100
+    this.fulmo.x = sw/2-64
+    this.fulmo.alpha = 0
+  }
   switch (jxeleo){
     case "flava":
     this.k = new Kiwi.GameObjects.Sprite(this, this.textures['flava'], lr-32, sh/3+32);
@@ -179,12 +215,15 @@ myState.create = function(){
   this.krokodiloj_d = new Kiwi.Group(this)
   this.krokodiloj_md = new Kiwi.Group(this)
   this.sxtonoj = new Kiwi.Group(this)
-  this.nuboj_altaj = new Kiwi.Group(this)
-  this.nuboj_malaltaj = new Kiwi.Group(this)
+  if(nuba){
+    this.nuboj_altaj = new Kiwi.Group(this)
+    this.nuboj_malaltaj = new Kiwi.Group(this)
+  }
 
   var testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], lr-64, sh/3)
   testudo.addTag(ad.length)
   testudo.scaleToHeight(sf)
+  testudo.alpha = 0
   this.testudoj.addChild(testudo)
   amd.push(0)
   ad.push(1)
@@ -194,7 +233,13 @@ myState.create = function(){
         var krokodilo = new Kiwi.GameObjects.Sprite(this, this.textures['krokodilo_md'], ll-64, -sh/3*i)
         krokodilo.scaleToHeight(sf)
         this.krokodiloj_md.addChild(krokodilo)
-        var testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], lr-64, -sh/3*i)
+        if(hazarde(rugxebla)){
+          testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo_rugxa'], lr-64, -sh/3*i)
+          testudo.addTag("rugxa")
+        }
+        else{
+          testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], lr-64, -sh/3*i)
+        }
         testudo.addTag(ad.length)
         testudo.scaleToHeight(sf)
         this.testudoj.addChild(testudo)
@@ -202,7 +247,13 @@ myState.create = function(){
         ad.push(1)
       }
       else if(hazarde(sxtonebla)){
-        var testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], lr-64, -sh/3*i)
+        if(hazarde(rugxebla)){
+          testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo_rugxa'], lr-64, -sh/3*i)
+          testudo.addTag("rugxa")
+        }
+        else{
+          testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], lr-64, -sh/3*i)
+        }
         testudo.addTag(ad.length)
         testudo.scaleToHeight(sf)
         this.testudoj.addChild(testudo)
@@ -213,7 +264,13 @@ myState.create = function(){
         ad.push(1)
       }
       else{
-        var testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], ll-64, -sh/3*i)
+        if(hazarde(rugxebla)){
+          testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo_rugxa'], ll-64, -sh/3*i)
+          testudo.addTag("rugxa")
+        }
+        else{
+          testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], ll-64, -sh/3*i)
+        }
         testudo.addTag(ad.length)
         testudo.scaleToHeight(sf)
         this.testudoj.addChild(testudo)
@@ -226,7 +283,13 @@ myState.create = function(){
         var krokodilo = new Kiwi.GameObjects.Sprite(this, this.textures['krokodilo_d'], lr-64, -sh/3*i)
         krokodilo.scaleToHeight(sf)
         this.krokodiloj_d.addChild(krokodilo)
-        var testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], ll-64, -sh/3*i)
+        if(hazarde(rugxebla)){
+          testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo_rugxa'], ll-64, -sh/3*i)
+          testudo.addTag("rugxa")
+        }
+        else{
+          testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], ll-64, -sh/3*i)
+        }
         testudo.addTag(ad.length)
         testudo.scaleToHeight(sf)
         this.testudoj.addChild(testudo)
@@ -234,7 +297,13 @@ myState.create = function(){
         ad.push(3)
         }
       else if(hazarde(sxtonebla)){
-        var testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], ll-64, -sh/3*i)
+        if(hazarde(rugxebla)){
+          testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo_rugxa'], ll-64, -sh/3*i)
+          testudo.addTag("rugxa")
+        }
+        else{
+          testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], ll-64, -sh/3*i)
+        }
         testudo.addTag(ad.length)
         testudo.scaleToHeight(sf)
         this.testudoj.addChild(testudo)
@@ -245,7 +314,13 @@ myState.create = function(){
         ad.push(2)
       }
       else{
-        var testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], lr-64, -sh/3*i)
+        if(hazarde(rugxebla)){
+          testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo_rugxa'], lr-64, -sh/3*i)
+          testudo.addTag("rugxa")
+        }
+        else{
+          testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], lr-64, -sh/3*i)
+        }
         testudo.addTag(ad.length)
         testudo.scaleToHeight(sf)
         this.testudoj.addChild(testudo)
@@ -276,18 +351,20 @@ myState.create = function(){
   }
   this.verda_antaux = new Kiwi.GameObjects.StaticImage(this, this.textures['verda_antaux'], lr, -sh/3*(nivelo_longa-1))
   this.viola_antaux = new Kiwi.GameObjects.StaticImage(this, this.textures['viola_antaux'], ll-64, -sh/3*(nivelo_longa-1))
-  for(i=0; i<nivelo_longa*3; i++){
-    var nubo = new Kiwi.GameObjects.Sprite(this, this.textures['nubo'+(Math.floor(Math.random()*2)+1).toString()], Math.random()*sw*2, -(sh/10)*i)
-    nubo.scaleToHeight(sf*1.7);
-    this.nuboj_altaj.addChild(nubo);
+  if(nuba){
+    for(i=0; i<nivelo_longa*3; i+=nubo_denco){
+      var nubo = new Kiwi.GameObjects.Sprite(this, this.textures['nubo'+(Math.floor(Math.random()*4)+1).toString()], Math.random()*sw*2, -(sh/9)*i)
+      nubo.scaleToHeight(sf*1.7);
+      this.nuboj_altaj.addChild(nubo);
+    }
+    for(i=0; i<nivelo_longa*3; i+=nubo_denco){
+      var nubo = new Kiwi.GameObjects.Sprite(this, this.textures['nubo'+(Math.floor(Math.random()*2)+1).toString()], Math.random()*sw*2, -(sh/9)*i)
+      nubo.scaleToHeight(sf*1.1);
+      this.nuboj_malaltaj.addChild(nubo);
+    }
+    this.nuboj_malaltaj.forEach(this, this.nubo_malalta_movi)
+    this.nuboj_altaj.forEach(this, this.nubo_alta_movi)
   }
-  for(i=0; i<nivelo_longa*3; i++){
-    var nubo = new Kiwi.GameObjects.Sprite(this, this.textures['nubo'+(Math.floor(Math.random()*2)+1).toString()], Math.random()*sw*2, -(sh/10)*i)
-    nubo.scaleToHeight(sf*1.1);
-    this.nuboj_malaltaj.addChild(nubo);
-  }
-  this.nuboj_malaltaj.forEach(this, this.nubo_malalta_movi)
-  this.nuboj_altaj.forEach(this, this.nubo_alta_movi)
 
   console.log(ad, amd)
   this.addChild(this.profunda_akvo);
@@ -301,8 +378,16 @@ myState.create = function(){
   this.addChild(this.verda_antaux);
   this.addChild(this.viola_antaux);
   this.addChild(this.k);
-  this.addChild(this.nuboj_malaltaj);
-  this.addChild(this.nuboj_altaj);
+  if(nuba){
+    this.addChild(this.nuboj_malaltaj);
+    this.addChild(this.nuboj_altaj);
+  }
+  if(nokte){
+    this.addChild(this.nigrajxo);
+  }
+  if(fulma){
+    this.addChild(this.fulmo);
+  }
   this.krokodiloj_d.callAll('animation', 'add', ['mangxi', [0,1,2,3], 0.1, true, true])
   this.krokodiloj_md.callAll('animation', 'add', ['mangxi', [0,1,2,3], 0.1, true, true])
   tempo = 0
@@ -311,6 +396,8 @@ myState.create = function(){
   this.tempilo.createTimerEvent( Kiwi.Time.TimerEvent.TIMER_STOP, this.jeTempiloHalto, this );
   this.la_d = new Kiwi.Sound.Audio(this.game, 'la_d', 0.705, false);
   this.la_md = new Kiwi.Sound.Audio(this.game, 'la_md', 0.575, false);
+  this.tondro1 = new Kiwi.Sound.Audio(this.game, 'tondro1', 1.593, false);
+  this.tondro2 = new Kiwi.Sound.Audio(this.game, 'tondro2', 3.088, false);
   pasxo = 0
   d = true
   la_d = this.la_d
@@ -349,7 +436,13 @@ myState.update = function(){
   else if(0.5 < pasxo/nivelo_longa <= 1){
     this.profunda_akvo.alpha = (1-(pasxo/nivelo_longa))*2
   }
-
+  if(nokte){
+    this.nigrajxo.y = this.k.y-80;
+  }
+  if(fulma){
+    this.fulmo.y = this.k.y-80;
+  }
+  this.profunda_akvo.y = this.k.y-80;
 };
 myState.jeTempiloKalkulo1s = function(){
   if(tempo < (nivelo_longa+1)*tempdeturo*1000){
@@ -367,31 +460,51 @@ myState.jeTempiloKalkulo1s = function(){
         }
       }
       else if ((tempo % tempdeturo == 0) && ((ad[pasxo] === 1 && d) || (amd[pasxo] === 1 && d==false))){
-        this.tt.alpha -= 1/20
+        if(this.tt.hasTag("rugxa")){
+          this.tt.alpha -= 1/12
+        }
+        else{
+          this.tt.alpha -= 1/20
+        }
       }
     }
-    if (tempo % 1600 == 0){
-      this.nuboj_malaltaj.forEach(this, this.nubo_malalta_movi)
+    if (nuba){
+      if (tempo % 1600 == 0){
+        this.nuboj_malaltaj.forEach(this, this.nubo_malalta_movi)
+      }
+      if (tempo % 1000 == 0){
+        this.nuboj_altaj.forEach(this, this.nubo_alta_movi)
+      }
     }
-    if (tempo % 1000 == 0){
-      this.nuboj_altaj.forEach(this, this.nubo_alta_movi)
+    if (fulma){
+      if (tempo % intervalo == 0 && this.fulmo.alpha == 0){
+        this.fulmo.alpha = 1
+        this.tempo_fulmo = tempo
+      }
+      else if (tempo == this.tempo_fulmo + 10 && this.fulmo.alpha == 1){
+        this.fulmo.alpha = 0
+        intervalo = Math.floor(Math.random()*400)+800
+      }
+      else if (tempo == this.tempo_fulmo + 100){
+        intervalo = Math.floor(Math.random()*400)+800
+        if(hazarde(2)){
+          this.tondro1.play()
+        }
+        else{
+          this.tondro2.play()
+        }
+      }
     }
-
   }
   else{
     this.menuo("fintempe")
   }
 }
 myState.menuo = function(stato){
-  try{
-    //window.location = "file:///android_asset/menuo.html?stato="+stato+"&jxeleo="+jxeleo+"&nivelo="+nivelo
-  }
-  finally{
-    alert(stato)
-    window.location = "menuo.html?stato="+stato+"&jxeleo="+jxeleo+"&nivelo="+nivelo
-  }
+  //window.location = "file:///android_asset/menuo.html?stato="+stato+"&jxeleo="+jxeleo+"&nivelo="+nivelo
+  alert(stato)
+  window.location = "menuo.html?stato="+stato+"&jxeleo="+jxeleo+"&nivelo="+nivelo
 }
-//game.cameras.defaultCamera.transform.scale
 myState.nubo_alta_movi = function(nubo){
   nubo.x = Math.random()*sw*2+sw
   nubo.t = this.game.tweens.create(nubo).to({x: nubo.x-sw*4}, Math.random()*2000+8000, Kiwi.Animations.Tweens.Easing.Linear.None, true)

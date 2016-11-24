@@ -5,14 +5,10 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="512"
    height="128"
    id="svg2"
-   version="1.1"
-   inkscape:version="0.91 r13725"
-   sodipodi:docname="krokodilo_d.svg">
+   version="1.1">
   <metadata
      id="metadata20">
     <rdf:RDF>
@@ -21,303 +17,298 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <defs
      id="defs18" />
-  <sodipodi:namedview
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:window-width="1024"
-     inkscape:window-height="744"
-     id="namedview16"
-     showgrid="false"
-     inkscape:zoom="1.9666666"
-     inkscape:cx="97.482678"
-     inkscape:cy="68.57743"
-     inkscape:window-x="0"
-     inkscape:window-y="24"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="g4" />
   <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
   <g
      id="g4"
-     transform="matrix(0.27708098,0,0,0.27708098,-23.973211,10.68262)">
+     transform="matrix(-0.27708098,0,0,0.27708098,535.9732,10.68262)">
     <title
        id="title6">Layer 1</title>
     <rect
-       transform="matrix(0.98266169,-0.18540765,0.18540765,0.98266169,-62.863912,67.80905)"
+       transform="matrix(-0.98266169,-0.18540765,-0.18540765,0.98266169,0,0)"
        id="svg_29"
        height="31.322212"
        width="378.32037"
-       y="354.36209"
-       x="141.96683"
+       y="34.654045"
+       x="-1918.2173"
        stroke-linecap="null"
        stroke-linejoin="null"
        style="fill:#8bc34f;fill-opacity:1;stroke:#000000;stroke-width:5;stroke-dasharray:none" />
     <rect
-       transform="matrix(0.99995287,0.00970828,-0.00970828,0.99995287,2.4565941,-3.0705254)"
+       transform="matrix(-0.99995287,0.00970828,0.00970828,0.99995287,0,0)"
        id="svg_18"
        height="199"
        width="455"
-       y="152"
-       x="90"
+       y="168.52501"
+       x="-1928.3545"
        stroke-linecap="null"
        stroke-linejoin="null"
        style="fill:#8bc34f;fill-opacity:1;stroke:#000000;stroke-width:5;stroke-dasharray:none" />
     <circle
        id="svg_19"
        cy="126"
-       cx="374"
+       cx="-1646.8765"
        stroke-linecap="null"
        stroke-linejoin="null"
        r="53"
-       style="fill:#ffffff;stroke:#000000;stroke-width:5;stroke-dasharray:none" />
+       style="fill:#ffffff;stroke:#000000;stroke-width:5;stroke-dasharray:none"
+       transform="scale(-1,1)" />
     <circle
        id="svg_20"
        cy="127"
-       cx="460"
+       cx="-1560.8765"
        stroke-linecap="null"
        stroke-linejoin="null"
        r="53"
-       style="fill:#ffffff;stroke:#000000;stroke-width:5;stroke-dasharray:none" />
+       style="fill:#ffffff;stroke:#000000;stroke-width:5;stroke-dasharray:none"
+       transform="scale(-1,1)" />
     <circle
        id="svg_22"
        cy="65"
-       cx="256"
+       cx="-1764.8765"
        stroke-linecap="null"
        stroke-linejoin="null"
        r="0"
-       style="fill:#ffffff;stroke:#000000;stroke-width:5;stroke-dasharray:none" />
+       style="fill:#ffffff;stroke:#000000;stroke-width:5;stroke-dasharray:none"
+       transform="scale(-1,1)" />
     <ellipse
        id="svg_27"
        ry="22"
        rx="25"
        cy="133"
-       cx="347"
+       cx="-1673.8765"
        stroke-linecap="null"
        stroke-linejoin="null"
-       style="fill:#000000;stroke:#000000;stroke-width:5;stroke-dasharray:none" />
+       style="fill:#000000;stroke:#000000;stroke-width:5;stroke-dasharray:none"
+       transform="scale(-1,1)" />
     <ellipse
        id="svg_28"
        ry="22"
        rx="25"
        cy="134"
-       cx="436"
+       cx="-1584.8765"
        stroke-linecap="null"
        stroke-linejoin="null"
-       style="fill:#000000;stroke:#000000;stroke-width:5;stroke-dasharray:none" />
+       style="fill:#000000;stroke:#000000;stroke-width:5;stroke-dasharray:none"
+       transform="scale(-1,1)" />
     <ellipse
        id="svg_30"
        ry="10"
        rx="11.5"
        cy="167"
-       cx="110.5"
+       cx="-1910.3765"
        stroke-linecap="null"
        stroke-linejoin="null"
-       style="fill:#000000;stroke:#000000;stroke-width:5;stroke-dasharray:none" />
+       style="fill:#000000;stroke:#000000;stroke-width:5;stroke-dasharray:none"
+       transform="scale(-1,1)" />
     <rect
        style="fill:#8bc34f;fill-opacity:1;stroke:#000000;stroke-width:5;stroke-dasharray:none"
        stroke-linejoin="null"
        stroke-linecap="null"
-       x="544.61371"
-       y="452.35995"
+       x="-1457.1006"
+       y="174.72417"
        width="378.32037"
        height="31.322212"
        id="rect4142"
-       transform="matrix(0.99051788,-0.13738385,0.13738385,0.99051788,0,0)"
-       inkscape:transform-center-x="41.534392"
-       inkscape:transform-center-y="10.216097" />
+       transform="matrix(-0.99051788,-0.13738385,-0.13738385,0.99051788,0,0)" />
     <rect
        style="fill:#8bc34f;fill-opacity:1;stroke:#000000;stroke-width:5;stroke-dasharray:none"
        stroke-linejoin="null"
        stroke-linecap="null"
-       x="554.36371"
-       y="144.42094"
+       x="-1466.4175"
+       y="164.04018"
        width="455"
        height="199"
        id="rect4144"
-       transform="matrix(0.99995287,0.00970828,-0.00970828,0.99995287,0,0)" />
+       transform="matrix(-0.99995287,0.00970828,0.00970828,0.99995287,0,0)" />
     <circle
        style="fill:#ffffff;stroke:#000000;stroke-width:5;stroke-dasharray:none"
        r="53"
        stroke-linejoin="null"
        stroke-linecap="null"
-       cx="835.9588"
+       cx="-1184.9176"
        cy="126"
-       id="circle4146" />
+       id="circle4146"
+       transform="scale(-1,1)" />
     <circle
        style="fill:#ffffff;stroke:#000000;stroke-width:5;stroke-dasharray:none"
        r="53"
        stroke-linejoin="null"
        stroke-linecap="null"
-       cx="921.9588"
+       cx="-1098.9176"
        cy="127"
-       id="circle4148" />
+       id="circle4148"
+       transform="scale(-1,1)" />
     <ellipse
        style="fill:#000000;stroke:#000000;stroke-width:5;stroke-dasharray:none"
        stroke-linejoin="null"
        stroke-linecap="null"
-       cx="808.9588"
+       cx="-1211.9176"
        cy="133"
        rx="25"
        ry="22"
-       id="ellipse4150" />
+       id="ellipse4150"
+       transform="scale(-1,1)" />
     <ellipse
        style="fill:#000000;stroke:#000000;stroke-width:5;stroke-dasharray:none"
        stroke-linejoin="null"
        stroke-linecap="null"
-       cx="897.9588"
+       cx="-1122.9176"
        cy="134"
        rx="25"
        ry="22"
-       id="ellipse4152" />
+       id="ellipse4152"
+       transform="scale(-1,1)" />
     <ellipse
        style="fill:#000000;stroke:#000000;stroke-width:5;stroke-dasharray:none"
        stroke-linejoin="null"
        stroke-linecap="null"
-       cx="572.4588"
+       cx="-1448.4176"
        cy="167"
        rx="11.5"
        ry="10"
-       id="ellipse4154" />
+       id="ellipse4154"
+       transform="scale(-1,1)" />
     <rect
-       inkscape:transform-center-y="7.3083782"
-       inkscape:transform-center-x="42.143348"
-       transform="matrix(0.99766506,-0.06829655,0.06829655,0.99766506,0,0)"
+       transform="matrix(-0.99766506,-0.06829655,-0.06829655,0.99766506,0,0)"
        id="rect4184"
        height="31.322212"
        width="378.32037"
-       y="421.22726"
-       x="1034.7354"
+       y="283.20837"
+       x="-981.42249"
        stroke-linecap="null"
        stroke-linejoin="null"
        style="fill:#8bc34f;fill-opacity:1;stroke:#000000;stroke-width:5;stroke-dasharray:none" />
     <rect
-       transform="matrix(0.99995287,0.00970828,-0.00970828,0.99995287,0,0)"
+       transform="matrix(-0.99995287,0.00970828,0.00970828,0.99995287,0,0)"
        id="rect4186"
        height="199"
        width="455"
-       y="139.93611"
-       x="1016.3007"
+       y="159.55534"
+       x="-1004.4805"
        stroke-linecap="null"
        stroke-linejoin="null"
        style="fill:#8bc34f;fill-opacity:1;stroke:#000000;stroke-width:5;stroke-dasharray:none" />
     <circle
        id="circle4188"
        cy="126"
-       cx="1297.9176"
+       cx="-722.9588"
        stroke-linecap="null"
        stroke-linejoin="null"
        r="53"
-       style="fill:#ffffff;stroke:#000000;stroke-width:5;stroke-dasharray:none" />
+       style="fill:#ffffff;stroke:#000000;stroke-width:5;stroke-dasharray:none"
+       transform="scale(-1,1)" />
     <circle
        id="circle4190"
        cy="127"
-       cx="1383.9176"
+       cx="-636.9588"
        stroke-linecap="null"
        stroke-linejoin="null"
        r="53"
-       style="fill:#ffffff;stroke:#000000;stroke-width:5;stroke-dasharray:none" />
+       style="fill:#ffffff;stroke:#000000;stroke-width:5;stroke-dasharray:none"
+       transform="scale(-1,1)" />
     <ellipse
        id="ellipse4192"
        ry="22"
        rx="25"
        cy="133"
-       cx="1270.9176"
+       cx="-749.9588"
        stroke-linecap="null"
        stroke-linejoin="null"
-       style="fill:#000000;stroke:#000000;stroke-width:5;stroke-dasharray:none" />
+       style="fill:#000000;stroke:#000000;stroke-width:5;stroke-dasharray:none"
+       transform="scale(-1,1)" />
     <ellipse
        id="ellipse4194"
        ry="22"
        rx="25"
        cy="134"
-       cx="1359.9176"
+       cx="-660.9588"
        stroke-linecap="null"
        stroke-linejoin="null"
-       style="fill:#000000;stroke:#000000;stroke-width:5;stroke-dasharray:none" />
+       style="fill:#000000;stroke:#000000;stroke-width:5;stroke-dasharray:none"
+       transform="scale(-1,1)" />
     <ellipse
        id="ellipse4196"
        ry="10"
        rx="11.5"
        cy="167"
-       cx="1034.4176"
+       cx="-986.4588"
        stroke-linecap="null"
        stroke-linejoin="null"
-       style="fill:#000000;stroke:#000000;stroke-width:5;stroke-dasharray:none" />
+       style="fill:#000000;stroke:#000000;stroke-width:5;stroke-dasharray:none"
+       transform="scale(-1,1)" />
     <rect
        style="fill:#8bc34f;fill-opacity:1;stroke:#000000;stroke-width:5;stroke-dasharray:none"
        stroke-linejoin="null"
        stroke-linecap="null"
-       x="1459.7708"
-       y="579.29132"
+       x="-541.94348"
+       y="301.65555"
        width="378.32037"
        height="31.322212"
        id="rect4198"
-       transform="matrix(0.99051788,-0.13738385,0.13738385,0.99051788,0,0)"
-       inkscape:transform-center-x="41.534392"
-       inkscape:transform-center-y="10.216097" />
+       transform="matrix(-0.99051788,-0.13738385,-0.13738385,0.99051788,0,0)" />
     <rect
        style="fill:#8bc34f;fill-opacity:1;stroke:#000000;stroke-width:5;stroke-dasharray:none"
        stroke-linejoin="null"
        stroke-linecap="null"
-       x="1478.2378"
-       y="135.45128"
+       x="-542.5434"
+       y="155.07051"
        width="455"
        height="199"
        id="rect4200"
-       transform="matrix(0.99995287,0.00970828,-0.00970828,0.99995287,0,0)" />
+       transform="matrix(-0.99995287,0.00970828,0.00970828,0.99995287,0,0)" />
     <circle
        style="fill:#ffffff;stroke:#000000;stroke-width:5;stroke-dasharray:none"
        r="53"
        stroke-linejoin="null"
        stroke-linecap="null"
-       cx="1759.8765"
+       cx="-260.99997"
        cy="126"
-       id="circle4202" />
+       id="circle4202"
+       transform="scale(-1,1)" />
     <circle
        style="fill:#ffffff;stroke:#000000;stroke-width:5;stroke-dasharray:none"
        r="53"
        stroke-linejoin="null"
        stroke-linecap="null"
-       cx="1845.8765"
+       cx="-174.99995"
        cy="127"
-       id="circle4204" />
+       id="circle4204"
+       transform="scale(-1,1)" />
     <ellipse
        style="fill:#000000;stroke:#000000;stroke-width:5;stroke-dasharray:none"
        stroke-linejoin="null"
        stroke-linecap="null"
-       cx="1732.8765"
+       cx="-287.99997"
        cy="133"
        rx="25"
        ry="22"
-       id="ellipse4206" />
+       id="ellipse4206"
+       transform="scale(-1,1)" />
     <ellipse
        style="fill:#000000;stroke:#000000;stroke-width:5;stroke-dasharray:none"
        stroke-linejoin="null"
        stroke-linecap="null"
-       cx="1821.8765"
+       cx="-198.99995"
        cy="134"
        rx="25"
        ry="22"
-       id="ellipse4208" />
+       id="ellipse4208"
+       transform="scale(-1,1)" />
     <ellipse
        style="fill:#000000;stroke:#000000;stroke-width:5;stroke-dasharray:none"
        stroke-linejoin="null"
        stroke-linecap="null"
-       cx="1496.3765"
+       cx="-524.49994"
        cy="167"
        rx="11.5"
        ry="10"
-       id="ellipse4210" />
+       id="ellipse4210"
+       transform="scale(-1,1)" />
   </g>
 </svg>
