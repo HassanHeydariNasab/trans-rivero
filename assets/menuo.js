@@ -24,22 +24,50 @@ var mesagxo
 denove = document.getElementById("denove")
 sekve = document.getElementById("sekve")
 k_antaux = document.getElementById("k_antaux")
+
 if(stato == "gajnanto"){
   mesagxo = "به سلامت رد شدی!"
   window.localStorage.setItem("nivelo_"+jxeleo, +window.localStorage.getItem("nivelo_"+jxeleo)+1)
   sekve.innerHTML = "مرحلهٔ بعد ("+persa_cifero((1+(+nivelo)).toString())+")"
   denove.style.display = "none"
   k_antaux.src = "bildoj/"+jxeleo+"_antaux.svg"
+  try{
+    Android.playAudio("sonoj/hura.mp3")
+  }
+  catch(e){
+    if(!("android" in window.location)){
+      hura = new Audio('sonoj/hura.mp3');
+      hura.play();
+    }
+  }
 }
 else if(stato == "subakvita"){
   mesagxo = "غرق شدی!"
   sekve.style.display = "none"
   k_antaux.src = "bildoj/"+jxeleo+"_antaux_f.svg"
+  try{
+    Android.playAudio("sonoj/u.mp3")
+  }
+  catch(e){
+    if(!("android" in window.location)){
+      u = new Audio('sonoj/u.mp3');
+      u.play();
+    }
+  }
 }
 else if(stato == "mortita"){
   mesagxo = "مُردی!"
   sekve.style.display = "none"
   k_antaux.src = "bildoj/"+jxeleo+"_antaux_f.svg"
+  try{
+    Android.playAudio("sonoj/bu.mp3")
+  }
+  catch(e){
+    if(!("android" in window.location)){
+      bu = new Audio('sonoj/bu.mp3');
+      bu.play();
+    }
+  }
 }
 else if(stato == "fintempe"){
   mesagxo = "زمان به پایان رسید!"

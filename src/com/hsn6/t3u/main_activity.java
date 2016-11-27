@@ -11,6 +11,9 @@ import android.content.Intent;
 import android.view.View;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
+import android.widget.Toast;
+import android.content.Context;
+import com.hsn6.t3u.WebAppInterface;
 
 
 public class main_activity extends Activity
@@ -22,6 +25,7 @@ public class main_activity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 	this.myWebView = (WebView) findViewById(R.id.webview);
+	myWebView.addJavascriptInterface(new WebAppInterface(this), "Android");
 	WebSettings webSettings = myWebView.getSettings();
 	webSettings.setJavaScriptEnabled(true);
 	webSettings.setDomStorageEnabled(true);
@@ -42,6 +46,7 @@ public class main_activity extends Activity
 	    });
 	myWebView.setVerticalScrollBarEnabled(false);
 	myWebView.setHorizontalScrollBarEnabled(false);
+	
 	myWebView.loadUrl("file:///android_asset/niveloj.html");
     }
     @Override
@@ -51,7 +56,7 @@ public class main_activity extends Activity
 	    return true;
 	}
 	else{
-	    finish();
+	    //finish();
 	}
 	return super.onKeyDown(keyCode, event);
     }
