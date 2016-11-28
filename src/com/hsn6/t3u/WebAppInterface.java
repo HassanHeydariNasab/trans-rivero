@@ -11,6 +11,7 @@ import java.util.Arrays;
 
 public class WebAppInterface {
     Context mContext;
+    MediaPlayer mp = null;
 
     /** Instantiate the interface and set the context */
     WebAppInterface(Context c) {
@@ -25,9 +26,12 @@ public class WebAppInterface {
     @JavascriptInterface
     public void playAudio(String aud) { //String aud - file name passed 
 	//from the JavaScript function
-	final MediaPlayer mp;
 	
 	try {
+	    if (mp != null) {
+		mp.reset();
+		mp.release();
+	    }
 	    AssetFileDescriptor fileDescriptor = mContext.getAssets().openFd(aud);
 	    mp = new MediaPlayer();
 	    mp.setDataSource(fileDescriptor.getFileDescriptor(), 
@@ -36,12 +40,12 @@ public class WebAppInterface {
 	    fileDescriptor.close();
 	    mp.prepare();
 	    mp.start();
-	    Toast.makeText(mContext, "aa", Toast.LENGTH_SHORT).show();
+	    //Toast.makeText(mContext, "aa", Toast.LENGTH_SHORT).show();
 	    mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 		    @Override
 		    public void onCompletion(MediaPlayer mp) {
-			mp.release();
-			Toast.makeText(mContext, "I'm Finished", Toast.LENGTH_SHORT).show();
+			//mp.reset();
+			//Toast.makeText(mContext, "I'm Finished", Toast.LENGTH_SHORT).show();
 		    }
 		});
 	} catch (IllegalArgumentException e) {

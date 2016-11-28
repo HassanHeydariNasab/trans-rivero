@@ -172,8 +172,6 @@ myState.preload = function(){
   this.addImage('degelata_negxulo', 'bildoj/degelata_negxulo.svg');
   this.addImage('verda_antaux', 'bildoj/verda_antaux.svg');
   this.addImage('viola_antaux', 'bildoj/viola_antaux.svg');
-  this.addAudio('la_d', 'sonoj/la_d.mp3');
-  this.addAudio('la_md', 'sonoj/la_md.mp3');
   this.addImage('profunda_akvo', 'bildoj/profunda_akvo.svg');
   this.addImage('nubo1', 'bildoj/nubo1.svg');
   this.addImage('nubo2', 'bildoj/nubo2.svg');
@@ -181,9 +179,17 @@ myState.preload = function(){
   this.addImage('nubo4', 'bildoj/nubo4.svg');
   this.addImage('nigrajxo', 'bildoj/nigrajxo.svg');
   this.addImage('fulmo', 'bildoj/fulmo.svg');
-  this.addAudio('tondro1', 'sonoj/tondro1.mp3');
-  this.addAudio('tondro2', 'sonoj/tondro2.mp3');
   this.addImage('flamo', 'bildoj/flamo.svg');
+  if(!(window.location.toString().match(/android/))){
+    console.log(111111111, window.location, window.location.toString().match(/android/), 2222222222)
+    this.addAudio('tondro1', 'sonoj/tondro1.mp3');
+    this.addAudio('tondro2', 'sonoj/tondro2.mp3');
+    this.addAudio('la_d', 'sonoj/la_d.mp3');
+    this.addAudio('la_md', 'sonoj/la_md.mp3');
+  }
+  else if(window.location.toString().match(/android/)){
+    console.log(33333333)
+  }
 };
 
 myState.create = function(){
@@ -419,17 +425,33 @@ myState.create = function(){
   }
   this.krokodiloj_d.callAll('animation', 'add', ['mangxi', [0,1,2,3], 0.1, true, true])
   this.krokodiloj_md.callAll('animation', 'add', ['mangxi', [0,1,2,3], 0.1, true, true])
-  this.la_d = new Kiwi.Sound.Audio(this.game, 'la_d', 0.705, false);
-  this.la_md = new Kiwi.Sound.Audio(this.game, 'la_md', 0.575, false);
-  this.tondro1 = new Kiwi.Sound.Audio(this.game, 'tondro1', 1.592, false);
-  this.tondro2 = new Kiwi.Sound.Audio(this.game, 'tondro2', 3.134, false);
+  if(!(window.location.toString().match(/android/))){
+    this.la_d = new Kiwi.Sound.Audio(this.game, 'la_d', 0.705, false);
+    this.la_md = new Kiwi.Sound.Audio(this.game, 'la_md', 0.575, false);
+    this.tondro1 = new Kiwi.Sound.Audio(this.game, 'tondro1', 1.592, false);
+    this.tondro2 = new Kiwi.Sound.Audio(this.game, 'tondro2', 3.134, false);
+  }
 
   pasxo = 0
   d = true
   la_d = this.la_d
   la_md = this.la_md
-  document.getElementById("dekstru").addEventListener("click", function(){la_d.play('default', true); kk.x = lr-32; kk.y -= sh/3; d = true; pasxo++;})
-  document.getElementById("maldekstru").addEventListener("click", function(){la_md.play('default', true); kk.x = ll-32; kk.y -= sh/3; d = false; pasxo++;})
+  document.getElementById("dekstru").addEventListener("click", function(){try{
+    Android.playAudio("sonoj/la_d.mp3");
+  }
+  catch(e){
+    if(!(window.location.toString().match(/android/))){
+      la_d.play('default', true);
+    }
+  }; kk.x = lr-32; kk.y -= sh/3; d = true; pasxo++;})
+  document.getElementById("maldekstru").addEventListener("click", function(){try{
+    Android.playAudio("sonoj/la_md.mp3");
+  }
+  catch(e){
+    if(!(window.location.toString().match(/android/))){
+      la_md.play('default', true);
+    }
+  }; kk.x = ll-32; kk.y -= sh/3; d = false; pasxo++;})
 
   tempo = 0
   this.tempilo = this.game.time.clock.createTimer('tempilo', 0.01, nivelo_longa*tempdeturo*1000, true);
@@ -533,10 +555,24 @@ myState.jeTempiloKalkulo1s = function(){
       else if (tempo == this.tempo_fulmo + 100){
         intervalo = Math.floor(Math.random()*400)+800
         if(hazarde(2)){
-          this.tondro1.play()
+          try{
+            Android.playAudio("sonoj/tondro1.mp3");
+          }
+          catch(e){
+            if(!(window.location.toString().match(/android/))){
+              this.tondro1.play('default', true);
+            }
+          }
         }
         else{
-          this.tondro2.play()
+          try{
+            Android.playAudio("sonoj/tondro2.mp3");
+          }
+          catch(e){
+            if(!(window.location.toString().match(/android/))){
+              this.tondro2.play('default', true);
+            }
+          }
         }
       }
     }
