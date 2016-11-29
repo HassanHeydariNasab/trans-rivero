@@ -95,6 +95,7 @@ switch(jxeleo){
     tempdeturo = 12;
     krokodilebla = 4;
     sxtonebla = 4;
+    flamebla= true;
   }
   break;
   case "verda":
@@ -181,14 +182,10 @@ myState.preload = function(){
   this.addImage('fulmo', 'bildoj/fulmo.svg');
   this.addImage('flamo', 'bildoj/flamo.svg');
   if(!(window.location.toString().match(/android/))){
-    console.log(111111111, window.location, window.location.toString().match(/android/), 2222222222)
     this.addAudio('tondro1', 'sonoj/tondro1.mp3');
     this.addAudio('tondro2', 'sonoj/tondro2.mp3');
     this.addAudio('la_d', 'sonoj/la_d.mp3');
     this.addAudio('la_md', 'sonoj/la_md.mp3');
-  }
-  else if(window.location.toString().match(/android/)){
-    console.log(33333333)
   }
 };
 
@@ -431,13 +428,16 @@ myState.create = function(){
     this.tondro1 = new Kiwi.Sound.Audio(this.game, 'tondro1', 1.592, false);
     this.tondro2 = new Kiwi.Sound.Audio(this.game, 'tondro2', 3.134, false);
   }
-
+  game.frameRate = 60
+  tempo = 0
+  this.tempilo = this.game.time.clock.createTimer('tempilo', 0.01, nivelo_longa*tempdeturo*10000, true);
+  this.tempilo.createTimerEvent( Kiwi.Time.TimerEvent.TIMER_COUNT, this.jeTempiloKalkulo1s, this );
   pasxo = 0
   d = true
   la_d = this.la_d
   la_md = this.la_md
   document.getElementById("dekstru").addEventListener("click", function(){try{
-    Android.playAudio("sonoj/la_d.mp3");
+    Android.playAudio2("sonoj/la_d.mp3");
   }
   catch(e){
     if(!(window.location.toString().match(/android/))){
@@ -445,18 +445,13 @@ myState.create = function(){
     }
   }; kk.x = lr-32; kk.y -= sh/3; d = true; pasxo++;})
   document.getElementById("maldekstru").addEventListener("click", function(){try{
-    Android.playAudio("sonoj/la_md.mp3");
+    Android.playAudio2("sonoj/la_md.mp3");
   }
   catch(e){
     if(!(window.location.toString().match(/android/))){
       la_md.play('default', true);
     }
   }; kk.x = ll-32; kk.y -= sh/3; d = false; pasxo++;})
-
-  tempo = 0
-  this.tempilo = this.game.time.clock.createTimer('tempilo', 0.01, nivelo_longa*tempdeturo*1000, true);
-  this.tempilo.createTimerEvent( Kiwi.Time.TimerEvent.TIMER_COUNT, this.jeTempiloKalkulo1s, this );
-  //this.tempilo.createTimerEvent( Kiwi.Time.TimerEvent.TIMER_STOP, this.jeTempiloHalto, this );
 };
 
 myState.update = function(){
@@ -466,23 +461,6 @@ myState.update = function(){
   if(pasxo >= nivelo_longa){this.menuo("gajnanto")}
   else if(sano <= 0){this.menuo("mortita")}
   else if(spiro <= 0){this.menuo("subakvita")}
-  else{
-  if(!(((ad[pasxo] === 1 || ad[pasxo] === 2) && d) || ((amd[pasxo] === 1 || amd[pasxo] === 2) && d == false)) && tempo > this.lastaTempo && pasxo != 0 && pasxo != nivelo_longa){
-    if((ad[pasxo] === 3 && d) || (amd[pasxo] === 3 && d == false)){
-      spiro-=3
-    }
-    else{
-      spiro-=1
-    }
-    document.getElementById("spiro").style.width = spiro + "vw"
-  }
-  if(((ad[pasxo] === 3 && d) || (amd[pasxo] === 3 && d == false)) && tempo > this.lastaTempo && pasxo != 0 && pasxo != nivelo_longa){
-    sano-=4.5
-    document.getElementById("sano").style.width = sano + "vw"
-  }
-    this.lastaTempo = tempo
-  }
-
   if(pasxo/nivelo_longa <= 0.5){
     this.profunda_akvo.alpha = pasxo/nivelo_longa*2
   }
@@ -496,10 +474,29 @@ myState.update = function(){
     this.fulmo.y = this.k.y-80;
   }
   this.profunda_akvo.y = this.k.y-80;
+  /*
+  if (tempo % 100 == 0){
+    console.log(game.frameRate, game.time.clock.delta)
+  }
+   */
 };
 myState.jeTempiloKalkulo1s = function(){
-  if(tempo < (nivelo_longa+1)*tempdeturo*1000){
+  if(tempo < (nivelo_longa+1)*tempdeturo*10000){
     tempo+=1
+    if(!(((ad[pasxo] === 1 || ad[pasxo] === 2) && d) || ((amd[pasxo] === 1 || amd[pasxo] === 2) && d == false)) && tempo > this.lastaTempo && pasxo != 0 && pasxo != nivelo_longa){
+      if((ad[pasxo] === 3 && d) || (amd[pasxo] === 3 && d == false)){
+        spiro-=0.3
+      }
+      else{
+        spiro-=0.6
+      }
+      document.getElementById("spiro").style.width = spiro + "vw"
+    }
+    if(((ad[pasxo] === 3 && d) || (amd[pasxo] === 3 && d == false)) && tempo > this.lastaTempo && pasxo != 0 && pasxo != nivelo_longa){
+      sano-=0.9
+      document.getElementById("sano").style.width = sano + "vw"
+    }
+    this.lastaTempo = tempo
     this.tt = this.testudoj.getFirstChildByTag(pasxo)
     if (this.tt !== null && tempo % 2 === 0){
       if(this.tt.alpha <= 0){
@@ -517,26 +514,34 @@ myState.jeTempiloKalkulo1s = function(){
           this.tt.alpha -= 1/12
         }
         else{
-          this.tt.alpha -= 1/20
+          this.tt.alpha -= 1/24
         }
       }
-      if(flamebla){
-        if(Math.abs(this.flamo_d.y - this.k.y) <= 32 && d){
-          console.log("trafita_d!")
-          sano-=3
-          document.getElementById("sano").style.width = sano + "vw"
-        }
-        if(Math.abs(this.flamo_md.y - this.k.y) <= 32 && d==false){
-          console.log("trafita_md!")
-          sano-=3
-          document.getElementById("sano").style.width = sano + "vw"
-        }
+    }
+    if(flamebla){
+      if(Math.abs(this.flamo_d.y - nivelo_longa*-sh/3) <= 32){
+        this.flamo_d.y = 6*sh/3
+        this.game.tweens.create(this.flamo_d).to({y: nivelo_longa*-sh/3}, nivelo_longa*1000, Kiwi.Animations.Tweens.Easing.Linear.None, true)
+      }
+      if(Math.abs(this.flamo_md.y - (nivelo_longa+3)*-sh/3) <= 32){
+        this.flamo_md.y = 3*sh/3
+        this.game.tweens.create(this.flamo_md).to({y: (nivelo_longa+3)*-sh/3}, nivelo_longa*1000, Kiwi.Animations.Tweens.Easing.Linear.None, true)
+      }
+      if(Math.abs(this.flamo_d.y - this.k.y) <= 32 && d){
+        console.log("trafita_d!")
+        sano-=3
+        document.getElementById("sano").style.width = sano + "vw"
+      }
+      if(Math.abs(this.flamo_md.y - this.k.y) <= 32 && d==false){
+        console.log("trafita_md!")
+        sano-=3
+        document.getElementById("sano").style.width = sano + "vw"
       }
     }
     if (nuba){
       if (tempo % 1600 == 0){
         /*n = this.nuboj_malaltaj.numChildren ()
-        this.nuboj_malaltaj.swapChildrenAt(Math.floor(Math.random()*n), Math.floor(Math.random()*n))*/
+          this.nuboj_malaltaj.swapChildrenAt(Math.floor(Math.random()*n), Math.floor(Math.random()*n))*/
         this.nuboj_malaltaj.forEach(this, this.nubo_malalta_movi)
       }
       if (tempo % 1000 == 0){
@@ -576,7 +581,6 @@ myState.jeTempiloKalkulo1s = function(){
         }
       }
     }
-      
   }
   else{
     this.menuo("fintempe")

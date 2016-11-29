@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">کوچ ژله‌ای</string>
+  <string name="app_name">کوچ ژله‌ای</string>
+  <string name="quit">خروج از بازی</string>
+  <string name="really_quit">می‌خوای از بازی خارج شی؟</string>
+  <string name="yes">بله</string>
+  <string name="no">نه</string>
+  <string name="really_reset">همه چی از اول شروع بشه؟</string>
+  <string name="reset">صفر کردن مرحله‌ها</string>
 </resources>

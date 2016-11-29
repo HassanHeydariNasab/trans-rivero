@@ -12,6 +12,7 @@ import java.util.Arrays;
 public class WebAppInterface {
     Context mContext;
     MediaPlayer mp = null;
+    MediaPlayer mp2 = null;
 
     /** Instantiate the interface and set the context */
     WebAppInterface(Context c) {
@@ -29,7 +30,7 @@ public class WebAppInterface {
 	
 	try {
 	    if (mp != null) {
-		mp.reset();
+		//mp.reset();
 		mp.release();
 	    }
 	    AssetFileDescriptor fileDescriptor = mContext.getAssets().openFd(aud);
@@ -40,14 +41,34 @@ public class WebAppInterface {
 	    fileDescriptor.close();
 	    mp.prepare();
 	    mp.start();
-	    //Toast.makeText(mContext, "aa", Toast.LENGTH_SHORT).show();
-	    mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-		    @Override
-		    public void onCompletion(MediaPlayer mp) {
-			//mp.reset();
-			//Toast.makeText(mContext, "I'm Finished", Toast.LENGTH_SHORT).show();
-		    }
-		});
+	} catch (IllegalArgumentException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	} catch (IllegalStateException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	} catch (IOException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}	 
+    }
+    @JavascriptInterface
+    public void playAudio2(String aud) { //String aud - file name passed 
+	//from the JavaScript function
+	
+	try {
+	    if (mp2 != null) {
+		//mp2.reset();
+		mp2.release();
+	    }
+	    AssetFileDescriptor fileDescriptor = mContext.getAssets().openFd(aud);
+	    mp2 = new MediaPlayer();
+	    mp2.setDataSource(fileDescriptor.getFileDescriptor(), 
+			     fileDescriptor.getStartOffset(), 
+			     fileDescriptor.getLength());
+	    fileDescriptor.close();
+	    mp2.prepare();
+	    mp2.start();
 	} catch (IllegalArgumentException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
