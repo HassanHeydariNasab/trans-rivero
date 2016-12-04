@@ -2,7 +2,7 @@ var sw = window.screen.width, sh = window.screen.height * 0.8
 var ll = sw / 4, lr = sw * 3 / 4
 var myState = new Kiwi.State('myState');
 var game = new Kiwi.Game("ludo", 'Trans', myState, { renderer: Kiwi.RENDERER_AUTO , width:sw , height:sh});
-var kk, pasxo=0, la_d, la_md, d, tempo, spiro=100, sano=100, nivelo_longa, tempdeturo, krokodilebla, sxtonebla, nuba, nubo_denco, nokte, sf, fulma, intervalo=100, rugxebla, flamebla, pasxo_fulmo_d=-6, pasxo_fulmo_md=-3
+var kk, pasxo=0, la_d, la_md, d, tempo, spiro=100, sano=100, nivelo_longa, tempdeturo, krokodilebla, sxtonebla, nuba, nubo_denco, nokte, sf, fulma, intervalo=100, rugxebla, flamebla, pasxo_fulmo_d=-6, pasxo_fulmo_md=-3, glaciebla=0
 var ad = []
 var amd = []
 function elekti(choices) {
@@ -99,6 +99,8 @@ switch(jxeleo){
   }
   break;
   case "verda":
+  document.getElementById("sano").style.backgroundColor = "#8BC34A";
+  document.getElementById("spiro").style.backgroundColor = "#689F38";
   nuba = true;
   nubo_denco = 4
   nokte = true
@@ -152,14 +154,141 @@ switch(jxeleo){
     tempdeturo = 12;
     krokodilebla = 4;
     sxtonebla = 4;
+    fulma = true;
+    glaciebla = 3;
+  }
+  break;
+  case "blua":
+  document.getElementById("sano").style.backgroundColor = "#2196F3";
+  document.getElementById("spiro").style.backgroundColor = "#1976D2";
+  nuba = true;
+  nubo_denco = 4
+  nokte = true
+  fulma = false
+  rugxebla = 4
+  flamebla = false
+  glaciebla = 5;
+  switch(nivelo){
+    case 0:
+    nivelo_longa = 15;
+    tempdeturo = 6;
+    krokodilebla = 0;
+    sxtonebla = 3;
+    rugxebla = 0;
+    nokte = false;
+    break;
+    case 1:
+    nivelo_longa = 10;
+    tempdeturo = 3;
+    krokodilebla = 0;
+    sxtonebla = 0;
+    break;
+    case 2:
+    nivelo_longa = 30;
+    tempdeturo = 1;
+    krokodilebla = 6;
+    sxtonebla = 4;
+    break;
+    case 3:
+    nivelo_longa = 60;
+    tempdeturo = 3;
+    krokodilebla = 4;
+    sxtonebla = 6;
+    rugxebla = 2;
+    break;
+    case 4:
+    nivelo_longa = 25;
+    tempdeturo = 1;
+    krokodilebla = 4;
+    sxtonebla = 0;
+    fulma = true
+    break;
+    case 5:
+    nivelo_longa = 40;
+    tempdeturo = 3;
+    krokodilebla = 2;
+    sxtonebla = 10;
+    nubo_denco = 1
+    break;
+    default:
+    nivelo_longa = 10;
+    tempdeturo = 12;
+    krokodilebla = 4;
+    sxtonebla = 4;
+    fulma = true
+  }
+  break;
+  case "viola":
+  document.getElementById("sano").style.backgroundColor = "#9C27B0";
+  document.getElementById("spiro").style.backgroundColor = "#7B1FA2";
+  nuba = true;
+  nubo_denco = 4
+  nokte = true
+  fulma = false
+  rugxebla = 4
+  flamebla = false
+  glaciebla = 5;
+  switch(nivelo){
+    case 0:
+    nivelo_longa = 15;
+    tempdeturo = 6;
+    krokodilebla = 0;
+    sxtonebla = 3;
+    rugxebla = 0;
+    nokte = false;
+    break;
+    case 1:
+    nivelo_longa = 10;
+    tempdeturo = 3;
+    krokodilebla = 0;
+    sxtonebla = 0;
+    break;
+    case 2:
+    nivelo_longa = 30;
+    tempdeturo = 1;
+    krokodilebla = 6;
+    sxtonebla = 4;
+    break;
+    case 3:
+    nivelo_longa = 60;
+    tempdeturo = 3;
+    krokodilebla = 4;
+    sxtonebla = 6;
+    rugxebla = 2;
+    break;
+    case 4:
+    nivelo_longa = 25;
+    tempdeturo = 1;
+    krokodilebla = 4;
+    sxtonebla = 0;
+    fulma = true
+    break;
+    case 5:
+    nivelo_longa = 40;
+    tempdeturo = 3;
+    krokodilebla = 2;
+    sxtonebla = 10;
+    nubo_denco = 1
+    break;
+    default:
+    nivelo_longa = 10;
+    tempdeturo = 12;
+    krokodilebla = 4;
+    sxtonebla = 4;
     fulma = true
   }
   break;
 }
 myState.preload = function(){
   Kiwi.State.prototype.preload.call(this);
-  this.addImage('flava', 'bildoj/flava.svg');
-  this.addImage('verda', 'bildoj/verda.svg');
+  //this.addImage('flava', 'bildoj/flava.svg');
+  //this.addImage('verda', 'bildoj/verda.svg');
+  //this.addImage('blua', 'bildoj/blua.svg');
+  //this.addImage('viola', 'bildoj/viola.svg');
+  this.addSpriteSheet('flava', 'bildoj/flava_trema.svg', 64,64);
+  this.addSpriteSheet('verda', 'bildoj/verda_trema.svg', 64,64);
+  this.addSpriteSheet('blua', 'bildoj/blua_trema.svg', 64,64);
+  this.addSpriteSheet('viola', 'bildoj/viola_trema.svg', 64,64);
   this.addImage('sxtono_d', 'bildoj/sxtono_d.svg');
   this.addImage('sxtono_md', 'bildoj/sxtono_md.svg');
   this.addImage('plagxo', 'bildoj/plagxo.svg');
@@ -181,6 +310,7 @@ myState.preload = function(){
   this.addImage('nigrajxo', 'bildoj/nigrajxo.svg');
   this.addImage('fulmo', 'bildoj/fulmo.svg');
   this.addImage('flamo', 'bildoj/flamo.svg');
+  this.addImage('glacio', 'bildoj/glacio.svg');
   if(!(window.location.toString().match(/android/))){
     this.addAudio('tondro1', 'sonoj/tondro1.mp3');
     this.addAudio('tondro2', 'sonoj/tondro2.mp3');
@@ -230,6 +360,12 @@ myState.create = function(){
     break;
     case "verda":
     this.k = new Kiwi.GameObjects.Sprite(this, this.textures['verda'], lr-32, sh/3+32);
+    break;
+    case "blua":
+    this.k = new Kiwi.GameObjects.Sprite(this, this.textures['blua'], lr-32, sh/3+32);
+    break;
+    case "viola":
+    this.k = new Kiwi.GameObjects.Sprite(this, this.textures['viola'], lr-32, sh/3+32);
     break;
   }
   this.k.scaleToHeight(sf/2)
@@ -295,6 +431,10 @@ myState.create = function(){
           testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo_rugxa'], ll-64, -sh/3*i)
           testudo.addTag("rugxa")
         }
+        else if(hazarde(glaciebla)){
+          testudo = new Kiwi.GameObjects.Sprite(this, this.textures['glacio'], ll-64, -sh/3*i)
+          testudo.addTag("glacio")
+        }
         else{
           testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], ll-64, -sh/3*i)
         }
@@ -344,6 +484,10 @@ myState.create = function(){
         if(hazarde(rugxebla)){
           testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo_rugxa'], lr-64, -sh/3*i)
           testudo.addTag("rugxa")
+        }
+        else if(hazarde(glaciebla)){
+          testudo = new Kiwi.GameObjects.Sprite(this, this.textures['glacio'], lr-64, -sh/3*i)
+          testudo.addTag("glacio")
         }
         else{
           testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], lr-64, -sh/3*i)
@@ -422,6 +566,7 @@ myState.create = function(){
   }
   this.krokodiloj_d.callAll('animation', 'add', ['mangxi', [0,1,2,3], 0.1, true, true])
   this.krokodiloj_md.callAll('animation', 'add', ['mangxi', [0,1,2,3], 0.1, true, true])
+  this.k.animation.add('tremi', [0,1,2,3], 0.16, true, true)
   if(!(window.location.toString().match(/android/))){
     this.la_d = new Kiwi.Sound.Audio(this.game, 'la_d', 0.705, false);
     this.la_md = new Kiwi.Sound.Audio(this.game, 'la_md', 0.575, false);
@@ -514,6 +659,12 @@ myState.jeTempiloKalkulo1s = function(){
           this.tt.alpha -= 1/12
         }
         else{
+          if(this.tt.hasTag("glacio")){
+            if(sano < 100){
+              sano+=2
+            }
+            document.getElementById("sano").style.width = sano + "vw"
+          }
           this.tt.alpha -= 1/24
         }
       }

@@ -33,11 +33,11 @@ body{
 }
 #sano{
     height: 5vh;
-    background-color: #FDE75D;
+    background-color: #FFEB3B;
 }
 #spiro{
     height: 2vh;
-    background-color: #F29E00;
+    background-color: #FBC02D;
     opacity: 1;
     top: 5vh;
     left: 0px;
@@ -95,13 +95,13 @@ body{
     background-color: #ffeb3b;
 }
 #verda{
-    background-color: #388e3c;
-}
-#viola{
-    background-color: #512da8;
+    background-color: #8BC34A;
 }
 #blua{
-    background-color: #1976d2;
+    background-color: #2196F3;
+}
+#viola{
+    background-color: #9C27B0;
 }
 .jxeleo{
     position: absolute;
@@ -126,4 +126,10 @@ body{
 }
 #komencu_verda{
     background-color: #689f38
+}
+#komencu_blua{
+    background-color: #1976D2
+}
+#komencu_viola{
+    background-color: #7B1FA2
 }
