@@ -42,7 +42,7 @@ if(stato == "gajnanto"){
   }
 }
 else if(stato == "subakvita"){
-  mesagxo = "غرق شدی!"
+  mesagxo = "خیلی آبکی شدی!"
   sekve.style.display = "none"
   k_antaux.src = "bildoj/"+jxeleo+"_antaux_f.svg"
   try{
@@ -56,7 +56,7 @@ else if(stato == "subakvita"){
   }
 }
 else if(stato == "mortita"){
-  mesagxo = "مُردی!"
+  mesagxo = "خورده شدی!"
   sekve.style.display = "none"
   k_antaux.src = "bildoj/"+jxeleo+"_antaux_f.svg"
   try{
@@ -77,14 +77,11 @@ else if(stato == "fintempe"){
 document.getElementById("stato").innerHTML = mesagxo
 
 document.getElementById("denove").addEventListener("click", function(){
-  //window.location = "file:///android_asset/ludo.html?jxeleo="+jxeleo+"&nivelo="+nivelo
   window.location = "ludo.html?jxeleo="+jxeleo+"&nivelo="+nivelo
 })
 document.getElementById("sekve").addEventListener("click", function(){
-  //window.location = "file:///android_asset/ludo.html?jxeleo="+jxeleo+"&nivelo="+(1+(+nivelo))
   window.location = "ludo.html?jxeleo="+jxeleo+"&nivelo="+(1+(+nivelo))
 })
 document.getElementById("reen").addEventListener("click", function(){
-  //window.location = "file:///android_asset/niveloj.html"
   window.location = "niveloj.html"
 })

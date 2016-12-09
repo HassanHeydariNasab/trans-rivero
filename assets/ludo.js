@@ -2,7 +2,7 @@ var sw = window.screen.width, sh = window.screen.height * 0.8
 var ll = sw / 4, lr = sw * 3 / 4
 var myState = new Kiwi.State('myState');
 var game = new Kiwi.Game("ludo", 'Trans', myState, { renderer: Kiwi.RENDERER_AUTO , width:sw , height:sh});
-var kk, pasxo=0, la_d, la_md, d, tempo, spiro=100, sano=100, nivelo_longa, tempdeturo, krokodilebla, sxtonebla, nuba, nubo_denco, nokte, sf, fulma, intervalo=100, rugxebla, flamebla, pasxo_fulmo_d=-6, pasxo_fulmo_md=-3, glaciebla=0
+var kk, pasxo=0, la_d, la_md, d, tempo, spiro=100, sano=100, nivelo_longa, tempdeturo, krokodilebla, sxtonebla, nuba, nubo_denco, nokte, sf, fulma, intervalo=100, rugxebla, flamebla, pasxo_fulmo_d=-6, pasxo_fulmo_md=-3, glaciebla=0, jxeleebla=0
 var ad = []
 var amd = []
 function elekti(choices) {
@@ -94,8 +94,9 @@ switch(jxeleo){
     nivelo_longa = 10;
     tempdeturo = 12;
     krokodilebla = 4;
-    sxtonebla = 4;
+    sxtonebla = 2;
     flamebla= true;
+    jxeleebla = 1;
   }
   break;
   case "verda":
@@ -153,9 +154,10 @@ switch(jxeleo){
     nivelo_longa = 10;
     tempdeturo = 12;
     krokodilebla = 4;
-    sxtonebla = 4;
+    sxtonebla = 2;
     fulma = true;
-    glaciebla = 3;
+    glaciebla = 1;
+    jxeleebla = 1;
   }
   break;
   case "blua":
@@ -214,8 +216,9 @@ switch(jxeleo){
     nivelo_longa = 10;
     tempdeturo = 12;
     krokodilebla = 4;
-    sxtonebla = 4;
-    fulma = true
+    sxtonebla = 2;
+    fulma = true;
+    jxeleebla = 1;
   }
   break;
   case "viola":
@@ -274,17 +277,14 @@ switch(jxeleo){
     nivelo_longa = 10;
     tempdeturo = 12;
     krokodilebla = 4;
-    sxtonebla = 4;
+    sxtonebla = 2;
     fulma = true
+    jxeleebla = 1;
   }
   break;
 }
 myState.preload = function(){
   Kiwi.State.prototype.preload.call(this);
-  //this.addImage('flava', 'bildoj/flava.svg');
-  //this.addImage('verda', 'bildoj/verda.svg');
-  //this.addImage('blua', 'bildoj/blua.svg');
-  //this.addImage('viola', 'bildoj/viola.svg');
   this.addSpriteSheet('flava', 'bildoj/flava_trema.svg', 64,64);
   this.addSpriteSheet('verda', 'bildoj/verda_trema.svg', 64,64);
   this.addSpriteSheet('blua', 'bildoj/blua_trema.svg', 64,64);
@@ -311,6 +311,10 @@ myState.preload = function(){
   this.addImage('fulmo', 'bildoj/fulmo.svg');
   this.addImage('flamo', 'bildoj/flamo.svg');
   this.addImage('glacio', 'bildoj/glacio.svg');
+  this.addImage('jxeleo_flava', 'bildoj/jxeleo_flava.svg');
+  this.addImage('jxeleo_verda', 'bildoj/jxeleo_verda.svg');
+  this.addImage('jxeleo_blua', 'bildoj/jxeleo_blua.svg');
+  this.addImage('jxeleo_viola', 'bildoj/jxeleo_viola.svg');
   if(!(window.location.toString().match(/android/))){
     this.addAudio('tondro1', 'sonoj/tondro1.mp3');
     this.addAudio('tondro2', 'sonoj/tondro2.mp3');
@@ -414,6 +418,14 @@ myState.create = function(){
           testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo_rugxa'], lr-64, -sh/3*i)
           testudo.addTag("rugxa")
         }
+        else if(hazarde(glaciebla)){
+          testudo = new Kiwi.GameObjects.Sprite(this, this.textures['glacio'], lr-64, -sh/3*i)
+          testudo.addTag("glacio")
+        }
+        else if(hazarde(jxeleebla)){
+          testudo = new Kiwi.GameObjects.Sprite(this, this.textures['jxeleo_'+jxeleo], lr-64, -sh/3*i)
+          testudo.addTag("jxeleo")
+        }
         else{
           testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], lr-64, -sh/3*i)
         }
@@ -430,10 +442,6 @@ myState.create = function(){
         if(hazarde(rugxebla)){
           testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo_rugxa'], ll-64, -sh/3*i)
           testudo.addTag("rugxa")
-        }
-        else if(hazarde(glaciebla)){
-          testudo = new Kiwi.GameObjects.Sprite(this, this.textures['glacio'], ll-64, -sh/3*i)
-          testudo.addTag("glacio")
         }
         else{
           testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], ll-64, -sh/3*i)
@@ -468,6 +476,14 @@ myState.create = function(){
           testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo_rugxa'], ll-64, -sh/3*i)
           testudo.addTag("rugxa")
         }
+        else if(hazarde(glaciebla)){
+          testudo = new Kiwi.GameObjects.Sprite(this, this.textures['glacio'], ll-64, -sh/3*i)
+          testudo.addTag("glacio")
+        }
+        else if(hazarde(jxeleebla)){
+          testudo = new Kiwi.GameObjects.Sprite(this, this.textures['jxeleo_'+jxeleo], ll-64, -sh/3*i)
+          testudo.addTag("jxeleo")
+        }
         else{
           testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], ll-64, -sh/3*i)
         }
@@ -484,10 +500,6 @@ myState.create = function(){
         if(hazarde(rugxebla)){
           testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo_rugxa'], lr-64, -sh/3*i)
           testudo.addTag("rugxa")
-        }
-        else if(hazarde(glaciebla)){
-          testudo = new Kiwi.GameObjects.Sprite(this, this.textures['glacio'], lr-64, -sh/3*i)
-          testudo.addTag("glacio")
         }
         else{
           testudo = new Kiwi.GameObjects.Sprite(this, this.textures['testudo'], lr-64, -sh/3*i)
@@ -630,7 +642,7 @@ myState.jeTempiloKalkulo1s = function(){
     tempo+=1
     if(!(((ad[pasxo] === 1 || ad[pasxo] === 2) && d) || ((amd[pasxo] === 1 || amd[pasxo] === 2) && d == false)) && tempo > this.lastaTempo && pasxo != 0 && pasxo != nivelo_longa){
       if((ad[pasxo] === 3 && d) || (amd[pasxo] === 3 && d == false)){
-        spiro-=0.3
+        spiro-=0.1
       }
       else{
         spiro-=0.6
@@ -660,13 +672,19 @@ myState.jeTempiloKalkulo1s = function(){
         }
         else{
           if(this.tt.hasTag("glacio")){
+            if(spiro < 100){
+              spiro+=2
+              document.getElementById("spiro").style.width = spiro + "vw"
+            }
+          }
+          else if(this.tt.hasTag("jxeleo")){
             if(sano < 100){
               sano+=2
+              document.getElementById("sano").style.width = sano + "vw"
             }
-            document.getElementById("sano").style.width = sano + "vw"
           }
-          this.tt.alpha -= 1/24
         }
+        this.tt.alpha -= 1/24
       }
     }
     if(flamebla){
@@ -680,13 +698,13 @@ myState.jeTempiloKalkulo1s = function(){
       }
       if(Math.abs(this.flamo_d.y - this.k.y) <= 32 && d){
         console.log("trafita_d!")
-        sano-=3
-        document.getElementById("sano").style.width = sano + "vw"
+        spiro-=3
+        document.getElementById("spiro").style.width = spiro + "vw"
       }
       if(Math.abs(this.flamo_md.y - this.k.y) <= 32 && d==false){
         console.log("trafita_md!")
-        sano-=3
-        document.getElementById("sano").style.width = sano + "vw"
+        spiro-=3
+        document.getElementById("spiro").style.width = spiro + "vw"
       }
     }
     if (nuba){

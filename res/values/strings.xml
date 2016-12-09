@@ -7,4 +7,6 @@
   <string name="no">نه</string>
   <string name="really_reset">همه چی از اول شروع بشه؟</string>
   <string name="reset">صفر کردن مرحله‌ها</string>
+  <string name="really_buy">مراحل آبی و بنفش قفل هستند. می‌خوای با ۲۰۰۰تومان بازشون کنی؟</string>
+  <string name="buy">خرید مراحل آبی و بنفش</string>
 </resources>

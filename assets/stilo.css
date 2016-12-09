@@ -121,6 +121,12 @@ body{
     background-position: center;
     background-size: contain;
 }
+#komencu_blua{
+    background-image: url('bildoj/sxloso.svg');
+}
+#komencu_viola{
+    background-image: url('bildoj/sxloso.svg');
+}
 #komencu_flava{
     background-color: #fbc02d
 }
